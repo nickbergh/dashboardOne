@@ -32,18 +32,31 @@ export class Chart1Component implements OnInit {
     bandwidthCoef: 0.8
   }
 
+  public chartMargin = {
+    left: 10,
+    right: 20,
+    top: 15,
+    bottom: 30
+  }
+
+  public innerWidth = 0;
+  public innerHeight = 0;
+
   constructor(
     private element: ElementRef
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     // Calculate width of each data svg
     const svg = this.element.nativeElement.getElementsByTagName('svg')[0];
     const dimensions = svg.getBoundingClientRect();
+
+    this.innerWidth = dimensions.width - this.chartMargin.left - this.chartMargin.right;
+    this.innerHeight = dimensions.height - this.chartMargin.top - this.chartMargin.bottom;
+
     this.svgDimensions = {
       dimensions,
-      width: (dimensions.width - 2 * this.columnPadding.outerPadding) / this.data.length,
+      width: (this.innerWidth- 2 * this.columnPadding.outerPadding) / this.data.length,
       maxHeight: 1.1 * Math.max(...this.data)
     }
 

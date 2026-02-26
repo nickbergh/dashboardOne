@@ -2,7 +2,7 @@
   <rect
     *ngFor="let point of data; index as i"
     [attr.x]="i * svgDimensions.width + 0.5 * columnPadding.padding + columnPadding.outerPadding"
-    [attr.y]="svgDimensions.dimensions.height - (svgDimensions.dimensions.height / svgDimensions.maxHeight) * point"
+    [attr.y]="innerHeight - (innerHeight / svgDimensions.maxHeight) * point"
     [attr.width]="columnPadding.bandwidth"
-    [attr.height]="(svgDimensions.dimensions.height / svgDimensions.maxHeight) * point"></rect>
+    [attr.height]="(innerHeight / svgDimensions.maxHeight) * point"></rect>
 </svg>
